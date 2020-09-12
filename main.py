@@ -5,7 +5,7 @@ try: #connection är namnet på databasen för python
     connection = mysql.connector.connect(host='localhost',
                                          database='todo',
                                          user='root',
-                                         password='gurkan')
+                                        password='gurkan')
     if connection.is_connected():
         db_Info = connection.get_server_info()
         print("Connected to MySQL Server version ", db_Info)
