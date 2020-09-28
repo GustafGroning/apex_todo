@@ -5,7 +5,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 
 try: #connection är namnet på databasen för python
     connection = mysql.connector.connect(host='localhost',
-                                         database='todo',
+                                         database='todo_db',
                                          user='root',
                                         password='gurkan')
     if connection.is_connected():
@@ -31,26 +31,15 @@ def todoInsert(name, category, timeEst, prio):
     sql_query = str(insertQuery)
     myCursor.execute(sql_query)
     connection.commit()
-    question = input("would you like to enter another task?")
-    if question == "yes":
-        getValues()
-    elif question != "yes":
-        print("goodbye for now!")
 
-
-    connection.commit()
-
-def getValues():
-    name = input("What's the name of the task?")
     
-    showLists = "select DISTINCT(category) from items;"
-    myCursor.execute(showLists)
-    myRes = myCursor.fetchall()
-    for x in myRes:
-        print(x)   
-    category = input("These lists exists," "\n" "if you want a new list, type it's name!") 
-    timeEst = input("approximately how long will it take?")
-    prio = input("how important is the task from 1-5?")
+
+def getValues(taskName, taskList, taskTime, taskPrio):
+    print("running getValues")
+    name = taskName
+    category = taskList
+    timeEst = taskTime
+    prio = taskPrio
     todoInsert(name, category, timeEst, prio)
 
 def openList():
@@ -77,8 +66,6 @@ def smartPlan():   #TODO fixa så att priority går på MAX, lista så många so
 #smartPlan() 
 
 
-
-#def changeTodo():
     
 
 
@@ -151,9 +138,7 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
-
-
-        self.pushButton.clicked.connect(self.printa)
+        self.pushButton.clicked.connect(self.getInput)
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
@@ -164,16 +149,19 @@ class Ui_MainWindow(object):
         self.label_3.setText(_translate("MainWindow", "priority"))
         self.label_4.setText(_translate("MainWindow", "time estimate"))
 
-    def printa(self):
+    def getInput(self):
         #kör en funktion som bara sparar variabler, skicka dem senare till funktionerna.
         taskName = self.lineEdit.text()
         print(taskName)
-        taskList = self.lineEdit_2.text()
+        taskList = self.lineEdit_3.text()
         print(taskList)
-        taskPriority = self.lineEdit_3.text()
-        print(taskPriority)
-        timeEst = self.lineEdit_4.text()
-        print(timeEst) 
+        taskPrio = self.lineEdit_2.text()
+        print(taskPrio)
+        taskTime = self.lineEdit_4.text()
+        print(taskTime)
+        getValues(taskName, taskList, taskTime, taskPrio)
+
+
 
 if __name__ == "__main__":
     import sys
