@@ -17,7 +17,8 @@ def window():
     sys.exit(app.exec_())
 
 
-
+def helloWorld():
+    print("hello world!")
 
 
 class Ui_MainWindow(object):
@@ -26,18 +27,12 @@ class Ui_MainWindow(object):
         MainWindow.resize(489, 514)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
-        self.smartPlanButton = QtWidgets.QPushButton(self.centralwidget)
-        self.smartPlanButton.setGeometry(QtCore.QRect(130, 170, 231, 141))
-        self.smartPlanButton.setObjectName("smartPlanButton")
+    
         self.addTaskButton = QtWidgets.QPushButton(self.centralwidget)
         self.addTaskButton.setGeometry(QtCore.QRect(160, 80, 171, 61))
         self.addTaskButton.setObjectName("addTaskButton")
-        self.pushButton_2 = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton_2.setGeometry(QtCore.QRect(330, 350, 161, 111))
-        self.pushButton_2.setObjectName("pushButton_2")
-        self.pushButton_3 = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton_3.setGeometry(QtCore.QRect(0, 350, 161, 111))
-        self.pushButton_3.setObjectName("pushButton_3")
+       
+        
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 489, 22))
@@ -50,13 +45,17 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
+        b1 = QtWidgets.QPushButton(MainWindow)
+        b1.setText("first button")
+        b1.clicked.connect(helloWorld)
+        
+
+
+
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
-        self.smartPlanButton.setText(_translate("MainWindow", "SMART PLAN"))
         self.addTaskButton.setText(_translate("MainWindow", "Add Task"))
-        self.pushButton_2.setText(_translate("MainWindow", "Statistics"))
-        self.pushButton_3.setText(_translate("MainWindow", "Lists"))
         self.toolBar.setWindowTitle(_translate("MainWindow", "toolBar"))
 
 
