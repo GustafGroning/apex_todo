@@ -5,7 +5,9 @@ public class Task {
     private String name;
     private double duration;
     private int priority; //should only be 1-3 or 1-5, figure out the exception handling later.
-    // add dueDate, it screws with the constructor right now.
+    // Maybe priority should be more abstract, like "low, medium, high", something like that.
+
+    // add dueDate later, it screws with the constructor right now.
 
     public Task(String name, double duration, int priority) {
         this.name = name;

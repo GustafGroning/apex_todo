@@ -22,6 +22,11 @@ public class Category {
     public void addTask(String name){
         taskArrayList.add(new Task(name));
     }
+
+    public String getName() {
+        return name;
+    }
+
     public void listTasks(){
         for (int i=0; i<taskArrayList.size(); i++){
             System.out.println(taskArrayList.get(i).toString());
